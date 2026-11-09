@@ -16,4 +16,57 @@ print("--- Exercise 3 ---")
 with open(SALES_FILE, "r") as f:
     reader= csv.reader(f)
     header = next(reader)
-    print()
+    print(f"Header: {header}")
+    for row in reader:
+        print(row)
+
+print(" --- Exercise 4---")
+total_revenue = 0 
+with open(SALES_FILE, "r") as f:
+    reader = csv.reader(f)
+    next(reader)
+    for row in reader:
+        product, price_str, qty_str = row
+        price = float(row[1])
+        quantity = int(row[2])
+
+print("--- Exercise 5---")
+
+high_value = []
+rows_read = 0
+
+with open(SALES_FILE, "r") as f:
+    reader = csv.reader(f)
+    next(reader)
+    for row in reader:
+        rows_read += 1
+        product, price_str, qty_str = row
+        price = float(price_str)
+        quantity = int(qty_str)
+        total = price * quantity
+        if total > 100:
+            high_value.append([product, f"({price:.2f}", quantity, f"{total:.2f}"])
+
+print( "--- Exercise 6---")
+
+dict_total = 0
+with open(SALES_FILE, "r") as f:
+    reader = csv.DictReader (f)
+    for row in reader:
+        price = float(row["price"])
+        quantity = int(row["quantity"])
+        total = price * quantity
+        dict_total += total
+        print(f"{row['product']}: {quantity} units x {price:.2f} = ${total:.2f}")
+
+print(" --- Exercise 7 ----")
+summary = {}
+
+with open (SALES_FILE, "r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        reader = csv.DictReader(f)
+        for row in reader:
+            product = row["product"]
+            total = float(row["price"]) * int(row["quantity"])
+            summary[product] = summary.get(product, 0) + total
