@@ -59,6 +59,7 @@ with open(SALES_FILE, "r") as f:
         dict_total += total
         print(f"{row['product']}: {quantity} units x {price:.2f} = ${total:.2f}")
 
+
 print(" --- Exercise 7 ----")
 summary = {}
 
@@ -70,3 +71,15 @@ with open (SALES_FILE, "r") as f:
             product = row["product"]
             total = float(row["price"]) * int(row["quantity"])
             summary[product] = summary.get(product, 0) + total
+for product in sorted(summary.keys()):
+    print(f"{product}: ${summary[product]:.2f}")
+
+print("--- Exercise 8---")
+
+timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+with open (LOG_FILE, "r") as f:
+    for line in f:
+        entries += 1 
+        print(line.strip())
+
+print(f"Log entries so far {entries}")
